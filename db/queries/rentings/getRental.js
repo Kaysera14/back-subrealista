@@ -9,7 +9,7 @@ const getRental = async (id) => {
 
     const [result] = await connection.query(
       `
-      SELECT rent_owner, rent_title, rent_id, rent_type, rent_rooms, rent_description, rent_price, rent_location, rent_address, createdAt
+      SELECT rent_owner, rent_title, rent_id, rent_type, rent_rooms, rent_description, rent_price, rent_location, rent_address, createdAt, rent_cover
       FROM rentings
       WHERE rent_id= ?
         `,
@@ -50,10 +50,9 @@ const getRental = async (id) => {
 
     const [rentals] = await connection.query(
       `
-        SELECT rental_start, rental_end
+        SELECT rental_start, rental_end, rental_status
         FROM rentals
         WHERE rental_rent_id=?
-        AND rental_status='Aceptado'
       `,
       [id]
     );

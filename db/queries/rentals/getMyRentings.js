@@ -19,9 +19,10 @@ const getMyRentings = async (rental_owner) => {
       rentings.rent_cover,
       rentals.rental_start,
       rentals.rental_end,
-      rentals.rental_status
+      rentals.rental_status,
+      rentals.rental_deleted
       FROM rentals
-      INNER JOIN rentings ON rentals.rental_id = rentings.rent_id
+      INNER JOIN rentings ON rentals.rental_rent_id = rentings.rent_id
       WHERE rental_owner=?
       `,
       [rental_owner]

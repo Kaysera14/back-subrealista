@@ -133,6 +133,11 @@ const newRenting = async (req, res, next) => {
         username
       );
     }
+
+    res.send({
+      status: 'ok',
+      message: `El alquiler ${rent_title} ha sido creado con éxito.`,
+    });
   } catch (error) {
     next(error);
   }
