@@ -68,23 +68,48 @@ const populate = async () => {
     console.log('Rellenando tabla rentals');
     await connection.query(
       `
-        INSERT INTO rentals (rental_rent_id, rental_owner, rental_tenant, rental_start, rental_end, rental_status)
-        VALUES 
-        (1, 'Manu', 'Susana', '2024-01-11', '2024-01-18', 'Pendiente'),
-        (2, 'Manu', 'Maria', '2024-02-12', '2024-02-19', 'Aceptado'),
-        (3, 'Oscar', 'Yese', '2024-03-13', '2024-03-20', 'Aceptado'),
-        (4, 'Oscar', 'Selene', '2024-04-14', '2024-04-21', 'Rechazado'),
-        (5, 'Yese', 'Esteban', '2024-05-15', '2024-05-22', 'Aceptado'),
-        (6, 'Yese', 'Manu', '2024-06-16', '2024-06-23', 'Pendiente'),
-        (7, 'Toni', 'Oscar', '2024-07-17', '2024-07-24', 'Aceptado'),
-        (8, 'Toni', 'Paco', '2024-08-18', '2024-08-25', 'Rechazado'),
-        (9, 'Selene', 'Toni', '2024-09-19', '2024-09-26', 'Pendiente'),
-        (10, 'Selene', 'Elena', '2024-10-20', '2024-10-27', 'Pendiente'),
-        (11, 'Elena', 'Selene', '2024-11-21', '2024-11-28', 'Pendiente'),
-        (12, 'Elena', 'Maria', '2024-12-22', '2024-12-29', 'Pendiente'),
-        (13, 'Maria', 'Elena', '2025-01-23', '2025-01-30', 'Pendiente'),
-        (14, 'Maria', 'Susana', '2025-02-24', '2025-03-03', 'Pendiente'),
-        (15, 'Susana', 'Maria', '2025-03-25', '2025-04-01', 'Pendiente')
+      INSERT INTO rentals (rental_rent_id, rental_owner, rental_tenant, rental_start, rental_end, rental_status)
+      VALUES 
+      (1, 'Manu', 'Susana', '2022-01-11', '2022-01-18', 'Aceptado'),
+      (2, 'Manu', 'Maria', '2022-02-12', '2022-02-19', 'Aceptado'),
+      (3, 'Oscar', 'Yese', '2022-03-13', '2022-03-20', 'Aceptado'),
+      (4, 'Oscar', 'Selene', '2022-04-14', '2022-04-21', 'Aceptado'),
+      (5, 'Yese', 'Esteban', '2022-05-15', '2022-05-22', 'Aceptado'),
+      (6, 'Yese', 'Manu', '2022-06-16', '2022-06-23', 'Aceptado'),
+      (7, 'Toni', 'Laura', '2022-07-17', '2022-07-24', 'Aceptado'),
+      (8, 'Toni', 'Paco', '2022-08-18', '2022-08-25', 'Aceptado'),
+      (9, 'Paco', 'Toni', '2022-09-19', '2022-09-26', 'Aceptado'),
+      (10, 'Paco', 'David', '2022-10-20', '2022-10-27', 'Aceptado'),
+      (11, 'Elena', 'David', '2022-11-21', '2022-11-28', 'Aceptado'),
+      (12, 'Elena', 'Maria', '2022-12-22', '2022-12-29', 'Aceptado'),
+      (13, 'Selene', 'Isabel', '2023-01-23', '2023-01-30', 'Aceptado'),
+      (14, 'Selene', 'Susana', '2023-02-24', '2023-03-03', 'Aceptado'),
+      (15, 'Esteban', 'Alejandro', '2023-03-25', '2023-04-01', 'Aceptado'),
+      (16, 'Esteban', 'Valeria', '2023-04-26', '2023-05-03', 'Aceptado'),
+      (17, 'Maria', 'Manu', '2023-05-27', '2023-06-03', 'Aceptado'),
+      (18, 'Maria', 'Yese', '2023-06-28', '2023-07-05', 'Aceptado'),
+      (19, 'Susana', 'Toni', '2023-07-29', '2023-08-05', 'Aceptado'),
+      (20, 'Susana', 'Paco', '2023-08-30', '2023-09-06', 'Aceptado'),
+      (1, 'Manu', 'Susana', '2023-09-11', '2023-09-18', 'Aceptado'),
+      (2, 'Manu', 'Maria', '2023-10-12', '2023-10-19', 'Aceptado'),
+      (3, 'Oscar', 'Yese', '2023-11-13', '2023-11-20', 'Aceptado'),
+      (4, 'Oscar', 'Selene', '2023-12-14', '2023-12-21', 'Aceptado'),
+      (5, 'Yese', 'Esteban', '2024-01-15', '2024-01-22', 'Aceptado'),
+      (6, 'Yese', 'Manu', '2024-02-16', '2024-02-23', 'Aceptado'),
+      (7, 'Toni', 'Laura', '2024-03-17', '2024-03-24', 'Aceptado'),
+      (8, 'Toni', 'Paco', '2024-04-18', '2024-04-25', 'Aceptado'),
+      (9, 'Paco', 'Toni', '2024-05-19', '2024-05-26', 'Aceptado'),
+      (10, 'Paco', 'David', '2024-06-20', '2024-06-27', 'Aceptado'),
+      (11, 'Elena', 'David', '2024-07-21', '2024-07-28', 'Aceptado'),
+      (12, 'Elena', 'Maria', '2024-08-22', '2024-08-29', 'Aceptado'),
+      (13, 'Selene', 'Isabel', '2024-09-23', '2024-09-30', 'Aceptado'),
+      (14, 'Selene', 'Susana', '2024-10-24', '2024-10-31', 'Aceptado'),
+      (15, 'Esteban', 'Alejandro', '2024-11-25', '2024-12-02', 'Aceptado'),
+      (16, 'Esteban', 'Valeria', '2024-12-26', '2024-12-03', 'Aceptado'),
+      (17, 'Maria', 'Manu', '2025-01-27', '2025-01-04', 'Aceptado'),
+      (18, 'Maria', 'Yese', '2025-02-28', '2025-02-05', 'Aceptado'),
+      (19, 'Susana', 'Toni', '2025-03-29', '2025-03-06', 'Aceptado'),
+      (20, 'Susana', 'Paco', '2025-04-30', '2025-04-07', 'Aceptado')
       `
     );
 
@@ -224,25 +249,96 @@ const populate = async () => {
     console.log('Rellenando tabla owner_ratings');
     await connection.query(
       `
-        INSERT INTO owner_ratings (owner, tenant, renting_id, rating, comments)
-        VALUES
-        ('Manu', 'Maria', 1, 5, 'Very nice people'),
-        ('Oscar', 'Yese', 3, 5, 'Very nice people'),
-        ('Yese', 'Esteban', 5, 5, 'Very nice people'),
-        ('Toni', 'Oscar', 7, 5, 'Very nice people')
-        
-        `
+      INSERT INTO owner_ratings (owner, tenant, renting_id, rating, comments)
+      VALUES
+      ('Manu', 'Susana', 1, 4, 'Excelente lugar para unas vacaciones'),
+      ('Manu', 'Maria', 2, 5, 'El mejor lugar para relajarse y disfrutar'),
+      ('Oscar', 'Yese', 3, 1, 'No recomendaría este lugar para vacaciones'),
+      ('Oscar', 'Selene', 4, 2, 'La experiencia no fue lo que esperaba'),
+      ('Yese', 'Esteban', 5, 4, 'Un destino perfecto para unas vacaciones'),
+      ('Yese', 'Manu', 6, 2, 'No quedé satisfecho con mi estancia'),
+      ('Toni', 'Laura', 7, 3, 'Un lugar tranquilo y hermoso para descansar'),
+      ('Toni', 'Paco', 8, 5, 'Las mejores vacaciones que he tenido'),
+      ('Paco', 'Toni', 9, 2, 'No volvería a este lugar para vacacionar'),
+      ('Paco', 'David', 10, 2, 'No cumplió con mis expectativas de vacaciones'),
+      ('Elena', 'David', 11, 5, 'Un destino increíble para unas vacaciones inolvidables'),
+      ('Elena', 'Maria', 12, 1, 'No recomendaría este lugar para vacaciones'),
+      ('Selene', 'Isabel', 13, 3, 'Un lugar encantador para unas vacaciones en familia'),
+      ('Selene', 'Susana', 14, 4, 'Una experiencia maravillosa en mis vacaciones'),
+      ('Esteban', 'Alejandro', 15, 5, 'El lugar perfecto para unas vacaciones de ensueño'),
+      ('Esteban', 'Valeria', 16, 2, 'No quedé satisfecho con mi estancia'),
+      ('Maria', 'Manu', 17, 2, 'No cumplió con mis expectativas de vacaciones'),
+      ('Maria', 'Yese', 18, 3, 'Un lugar encantador para unas vacaciones en familia'),
+      ('Susana', 'Toni', 19, 4, 'Una experiencia maravillosa en mis vacaciones'),
+      ('Susana', 'Paco', 20, 5, 'Las mejores vacaciones que he tenido'),
+      ('Manu', 'Susana', 1, 4, 'Excelente lugar para unas vacaciones'),
+      ('Manu', 'Maria', 2, 2, 'No quedé satisfecho con mi estancia'),
+      ('Oscar', 'Yese', 3, 1, 'No recomendaría este lugar para vacaciones'),
+      ('Oscar', 'Selene', 4, 2, 'La experiencia no fue lo que esperaba'),
+      ('Yese', 'Esteban', 5, 5, 'Un destino perfecto para unas vacaciones'),
+      ('Yese', 'Manu', 6, 2, 'No quedé satisfecho con mi estancia'),
+      ('Toni', 'Laura', 7, 4, 'Un lugar tranquilo y hermoso para descansar'),
+      ('Toni', 'Paco', 8, 3, 'Las mejores vacaciones que he tenido'),
+      ('Paco', 'Toni', 9, 4, 'No volvería a este lugar para vacacionar'),
+      ('Paco', 'David', 10, 5, 'No cumplió con mis expectativas de vacaciones'),
+      ('Elena', 'David', 11, 2, 'Un destino increíble para unas vacaciones inolvidables'),
+      ('Elena', 'Maria', 12, 3, 'No recomendaría este lugar para vacaciones'),
+      ('Selene', 'Isabel', 13, 3, 'Un lugar encantador para unas vacaciones en familia'),
+      ('Selene', 'Susana', 14, 4, 'Una experiencia maravillosa en mis vacaciones'),
+      ('Esteban', 'Alejandro', 15, 5, 'El lugar perfecto para unas vacaciones de ensueño'),
+      ('Esteban', 'Valeria', 16, 1, 'No quedé satisfecho con mi estancia'),
+      ('Maria', 'Manu', 17, 2, 'No cumplió con mis expectativas de vacaciones'),
+      ('Maria', 'Yese', 18, 3, 'Un lugar encantador para unas vacaciones en familia'),
+      ('Susana', 'Toni', 19, 4, 'Una experiencia maravillosa en mis vacaciones'),
+      ('Susana', 'Paco', 20, 5, 'Las mejores vacaciones que he tenido')
+      `
     );
 
     console.log('Rellenando tabla tenant_ratings');
     await connection.query(
       `
-        INSERT INTO tenant_ratings (tenant, owner, renting_id, rating, comments)
-        VALUES 
-        ('Maria', 'Manu', 2, 5, 'Very nice people'),
-        ('Yese', 'Oscar', 3, 5, 'Very nice people'),
-        ('Esteban', 'Yese', 5, 5, 'Very nice people'),
-        ('Oscar', 'Toni', 7, 5, 'Very nice people')
+      INSERT INTO tenant_ratings (tenant, owner, renting_id, rating, comments)
+      VALUES 
+      ('Susana', 'Manu', 1, 4, 'Excelente inquilino, muy respetuoso'),
+      ('Maria', 'Manu', 2, 5, 'El mejor inquilino que he tenido, muy ordenado y amable'),
+      ('Yese', 'Oscar', 3, 1, 'No recomendaría a este inquilino, causó muchos problemas'),
+      ('Selene', 'Oscar', 4, 2, 'La experiencia con este inquilino no fue la mejor'),
+      ('Esteban', 'Yese', 5, 4, 'Un inquilino perfecto, cuidó muy bien de la propiedad'),
+      ('Manu', 'Yese', 6, 2, 'No quedé satisfecho con este inquilino, dejó la casa en mal estado'),
+      ('Laura', 'Toni', 7, 3, 'Un inquilino tranquilo y respetuoso, recomendado'),
+      ('Paco', 'Toni', 8, 5, 'El mejor inquilino que he tenido, muy limpio y ordenado'),
+      ('Toni', 'Paco', 9, 2, 'No volvería a alquilarle a este inquilino, causó muchos problemas'),
+      ('David', 'Paco', 10, 2, 'No cumplió con las reglas de la casa, no lo recomendaría como inquilino'),
+      ('David', 'Elena', 11, 5, 'Un inquilino increíble, cuidó la propiedad como si fuera suya'),
+      ('Maria', 'Elena', 12, 1, 'No recomendaría a este inquilino, causó muchos problemas'),
+      ('Isabel', 'Selene', 13, 3, 'Un inquilino encantador, muy respetuoso y ordenado'),
+      ('Susana', 'Selene', 14, 4, 'Una experiencia maravillosa con este inquilino, muy amable y considerado'),
+      ('Alejandro', 'Esteban', 15, 5, 'El inquilino perfecto, cuidó muy bien de la propiedad'),
+      ('Valeria', 'Esteban', 16, 2, 'No quedé satisfecho con este inquilino, dejó la casa en mal estado'),
+      ('Maria', 'Manu', 17, 2, 'No cumplió con las reglas de la casa, no lo recomendaría como inquilino'),
+      ('Yese', 'Maria', 18, 3, 'Un inquilino encantador, muy respetuoso y ordenado'),
+      ('Toni', 'Susana', 19, 4, 'Una experiencia maravillosa con este inquilino, muy amable y considerado'),
+      ('Paco', 'Susana', 20, 5, 'El mejor inquilino que he tenido, muy limpio y ordenado'),
+      ('Susana', 'Manu', 1, 4, 'Excelente inquilino, muy respetuoso'),
+      ('Maria', 'Manu', 2, 2, 'No quedé satisfecho con este inquilino, dejó la casa en mal estado'),
+      ('Yese', 'Oscar', 3, 1, 'No recomendaría a este inquilino, causó muchos problemas'),
+      ('Selene', 'Oscar', 4, 2, 'La experiencia con este inquilino no fue la mejor'),
+      ('Esteban', 'Yese', 5, 5, 'Un inquilino perfecto, cuidó muy bien de la propiedad'),
+      ('Manu', 'Yese', 6, 2, 'No quedé satisfecho con este inquilino, dejó la casa en mal estado'),
+      ('Laura', 'Toni', 7, 4, 'Un inquilino tranquilo y respetuoso, recomendado'),
+      ('Paco', 'Toni', 8, 3, 'El mejor inquilino que he tenido, muy limpio y ordenado'),
+      ('Toni', 'Paco', 9, 4, 'No volvería a alquilarle a este inquilino, causó muchos problemas'),
+      ('David', 'Paco', 10, 5, 'No cumplió con las reglas de la casa, no lo recomendaría como inquilino'),
+      ('David', 'Elena', 11, 2, 'Un inquilino increíble, cuidó la propiedad como si fuera suya'),
+      ('Maria', 'Elena', 12, 3, 'No recomendaría a este inquilino, causó muchos problemas'),
+      ('Isabel', 'Selene', 13, 3, 'Un inquilino encantador, muy respetuoso y ordenado'),
+      ('Susana', 'Selene', 14, 4, 'Una experiencia maravillosa con este inquilino, muy amable y considerado'),
+      ('Alejandro', 'Esteban', 15, 5, 'El inquilino perfecto, cuidó muy bien de la propiedad'),
+      ('Valeria', 'Esteban', 16, 1, 'No quedé satisfecho con este inquilino, dejó la casa en mal estado'),
+      ('Maria', 'Manu', 17, 2, 'No cumplió con las reglas de la casa, no lo recomendaría como inquilino'),
+      ('Yese', 'Maria', 18, 3, 'Un inquilino encantador, muy respetuoso y ordenado'),
+      ('Toni', 'Susana', 19, 4, 'Una experiencia maravillosa con este inquilino, muy amable y considerado'),
+      ('Paco', 'Susana', 20, 5, 'El mejor inquilino que he tenido, muy limpio y ordenado')
       `
     );
 
