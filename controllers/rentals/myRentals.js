@@ -9,11 +9,18 @@ const myRentals = async (req, res, next) => {
 
     const userRentals = await getMyRentals(username);
 
-    res.send({
-      status: 'ok',
-      message: 'Listado de peticiones enviadas: ',
-      data: userRentals,
-    });
+    if (userRentals.length !== 0) {
+      res.send({
+        status: 'ok',
+        message: 'Listado de peticiones enviadas: ',
+        data: userRentals,
+      });
+    } else {
+      res.send({
+        status: 404,
+        message: `El usuario ${username} no tiene ninguna reserva.`,
+      });
+    }
   } catch (error) {
     next(error);
   }

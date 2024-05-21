@@ -1,3 +1,4 @@
+const { generateError } = require('../../../helpers/index.js');
 const getPool = require('../../getDB.js');
 
 const getMyRentals = async (rental_tenant) => {
@@ -29,6 +30,9 @@ const getMyRentals = async (rental_tenant) => {
     );
 
     return result;
+  } catch (e) {
+    console.error(e);
+    throw generateError('Error en getMyRentals', 500);
   } finally {
     if (connection) connection.release;
   }
