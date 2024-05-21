@@ -7,14 +7,15 @@ const newUser = async ({
   bio,
   password,
   registrationCode,
+  profilePic,
 }) => {
   try {
     const pool = await getPool();
     const [{ insertID }] = await pool.query(
       `
       INSERT INTO users
-      (username, email, address, bio, password, registrationCode) VALUES (?, ?, ?, ?, ?, ?)`,
-      [username, email, address, bio, password, registrationCode]
+      (username, email, address, bio, password, profilePic, registrationCode) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [username, email, address, bio, password, profilePic, registrationCode]
     );
     return insertID;
   } catch (error) {
