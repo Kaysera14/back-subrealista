@@ -42,7 +42,7 @@
 
 <h2>Colaboradores</h2>
 <ul>
-  <li><a href="https://www.linkedin.com/in/antoniorg-dev/" target="_blank">Antonio Rondán Gaytán</a></li>
+  <li><a href="https://www.linkedin.com/in/manuelgonzalezkonstantinoff/" target="_blank">Manuel González Konstantinoff</a></li>
   <li><a href="https://www.linkedin.com/in/yese-astarloa/" target="_blank">Yese Astarloa</a></li>
 </ul>
 
