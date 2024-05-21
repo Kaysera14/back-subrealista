@@ -2,6 +2,10 @@ const bcrypt = require('bcrypt');
 const updateUser = require('../../db/queries/users/updateUser.js');
 const getUserPassword = require('../../db/queries/users/getUserPassword.js');
 const jwt = require('jsonwebtoken');
+const sharp = require('sharp');
+const randomUUID = require('crypto').randomUUID;
+const path = require('path');
+const { createUpload } = require('../../helpers/index.js');
 
 const updateProfile = async (req, res, next) => {
   try {
@@ -9,11 +13,36 @@ const updateProfile = async (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.SECRET);
     const username = decodedToken.username;
 
+    const profilePic = req.files && req.files.profilePic;
+
+    console.log(profilePic);
+
+    let processedImage = '';
+
+    if (profilePic && profilePic !== null) {
+      const uploadsDir = path.join(__dirname, '../../uploads');
+      await createUpload(uploadsDir);
+      const photosDir = path.join(__dirname, `../../uploads/profile_pics/`);
+      await createUpload(photosDir);
+
+      const processedSingleImage = sharp(profilePic.data)
+        .toFormat('webp')
+        .webp({ quality: 80, effort: 6 })
+        .resize({ width: 640, height: 800, fit: 'cover' });
+      const imageFileName = `${randomUUID}.webp`;
+
+      await processedSingleImage.toFile(path.join(photosDir, imageFileName));
+      processedImage = `http://localhost:3000/uploads/profile_pics/${imageFileName}`;
+    } else {
+      processedImage = 'Not changed';
+    }
+
     const updatedUser = {
       ...(req.body.email && { email: req.body.email }),
       ...(req.body.username && { username: req.body.username }),
       ...(req.body.bio && { bio: req.body.bio }),
       ...(req.body.address && { address: req.body.address }),
+      ...(processedImage ? { profilePic: processedImage } : ''),
     };
 
     if ('password' in req.body) {
@@ -34,6 +63,7 @@ const updateProfile = async (req, res, next) => {
       updatedUser.username,
       updatedUser.bio,
       updatedUser.address,
+      updatedUser.profilePic,
       username
     );
 
