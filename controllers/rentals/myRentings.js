@@ -9,11 +9,18 @@ const myRentings = async (req, res, next) => {
 
     const userRentings = await getMyRentings(username);
 
-    res.send({
-      status: 'ok',
-      message: 'Listado de peticiones recibidas: ',
-      data: userRentings,
-    });
+    if (userRentings.length !== 0) {
+      res.send({
+        status: 'ok',
+        message: 'Listado de peticiones recibidas: ',
+        data: userRentings,
+      });
+    } else {
+      res.send({
+        status: 404,
+        message: `El usuario: ${username} no ha realizado ningúna publicación.`,
+      });
+    }
   } catch (error) {
     next(error);
   }
