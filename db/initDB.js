@@ -48,7 +48,7 @@ const init = async () => {
       rent_cover VARCHAR(255),
       active BOOLEAN DEFAULT true,
       createdAt DATETIME DEFAULT NOW(),
-      FOREIGN KEY (rent_owner) REFERENCES users(username)
+      FOREIGN KEY (rent_owner) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -63,9 +63,9 @@ const init = async () => {
       rental_end DATETIME NOT NULL,
       rental_status ENUM('Aceptado', 'Rechazado', 'Pendiente') DEFAULT 'Pendiente',
       rental_deleted BOOL DEFAULT FALSE,
-      FOREIGN KEY (rental_rent_id) REFERENCES rentings(rent_id),
-      FOREIGN KEY (rental_owner) REFERENCES users(username),
-      FOREIGN KEY (rental_tenant) REFERENCES users(username)
+      FOREIGN KEY (rental_rent_id) REFERENCES rentings(rent_id) ON UPDATE CASCADE ON DELETE CASCADE,
+      FOREIGN KEY (rental_owner) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
+      FOREIGN KEY (rental_tenant) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -76,7 +76,7 @@ const init = async () => {
       rent_id INT UNSIGNED NOT NULL,
       rent_image VARCHAR(255),
       createdAt DATETIME NOT NULL DEFAULT NOW(),
-      FOREIGN KEY (rent_id) REFERENCES rentings(rent_id)
+      FOREIGN KEY (rent_id) REFERENCES rentings(rent_id) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -90,9 +90,9 @@ const init = async () => {
       rating INT UNSIGNED NOT NULL,
       comments VARCHAR(200) NOT NULL,
       createdAt DATETIME NOT NULL DEFAULT NOW(),
-      FOREIGN KEY (owner) REFERENCES users(username),
-      FOREIGN KEY (tenant) REFERENCES users(username),
-      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id)
+      FOREIGN KEY (owner) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
+      FOREIGN KEY (tenant) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
+      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -106,8 +106,8 @@ const init = async () => {
       rating INT UNSIGNED NOT NULL,
       comments VARCHAR(200) NOT NULL,
       createdAt DATETIME NOT NULL DEFAULT NOW(),
-      FOREIGN KEY (tenant) REFERENCES users(username),
-      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id)
+      FOREIGN KEY (tenant) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
+      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -129,7 +129,7 @@ const init = async () => {
       freezer BOOLEAN DEFAULT false,
       toaster BOOLEAN DEFAULT false, 
       fully_equipped BOOLEAN DEFAULT false,
-      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id)
+      FOREIGN KEY (renting_id) REFERENCES rentings(rent_id) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 

@@ -1,6 +1,4 @@
-const bcrypt = require('bcrypt');
 const updateUser = require('../../db/queries/users/updateUser.js');
-const getUserPassword = require('../../db/queries/users/getUserPassword.js');
 const jwt = require('jsonwebtoken');
 const sharp = require('sharp');
 const randomUUID = require('crypto').randomUUID;
@@ -44,19 +42,6 @@ const updateProfile = async (req, res, next) => {
       ...(req.body.address && { address: req.body.address }),
       ...(processedImage ? { profilePic: processedImage } : ''),
     };
-
-    if ('password' in req.body) {
-      const userPassword = await getUserPassword(username);
-
-      const isPasswordValid = await bcrypt.compare(
-        req.body.password,
-        userPassword[0].password
-      );
-
-      if (!isPasswordValid) {
-        return res.status(401).json({ error: 'La contraseña es incorrecta' });
-      }
-    }
 
     const rowsAffected = await updateUser(
       updatedUser.email,
