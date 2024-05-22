@@ -4,13 +4,15 @@ const getPendingRatings = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    const username = decodedToken.username;
+    const username = decodedToken.username
+      ? decodedToken.username
+      : decodedToken.newUsername;
 
     const unratedRatings = await getUserUnrated(username);
 
     res.send({
       status: 'ok',
-      data: ratings,
+      data: unratedRatings,
     });
   } catch (error) {
     next(error);

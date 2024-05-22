@@ -5,7 +5,9 @@ const myRentals = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    const username = decodedToken.username;
+    const username = decodedToken.username
+      ? decodedToken.username
+      : decodedToken.newUsername;
 
     const userRentals = await getMyRentals(username);
 

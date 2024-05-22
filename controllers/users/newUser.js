@@ -29,7 +29,7 @@ const createNewUser = async (req, res, next) => {
       const processedSingleImage = sharp(profilePic.data)
         .toFormat('webp')
         .resize({ width: 640, height: 800, fit: 'cover' });
-      const imageFileName = `${randomUUID}.webp`;
+      const imageFileName = `${randomUUID()}.webp`;
 
       await processedSingleImage.toFile(path.join(photosDir, imageFileName));
       processedImage = `http://localhost:3000/uploads/profile_pics/${imageFileName}`;

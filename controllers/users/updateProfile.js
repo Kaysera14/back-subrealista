@@ -9,7 +9,9 @@ const updateProfile = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    const username = decodedToken.username;
+    const username = decodedToken.username
+      ? decodedToken.username
+      : decodedToken.newUsername;
 
     const profilePic = req.files && req.files.profilePic;
 
@@ -27,7 +29,7 @@ const updateProfile = async (req, res, next) => {
         .toFormat('webp')
         .webp({ quality: 80, effort: 6 })
         .resize({ width: 640, height: 800, fit: 'cover' });
-      const imageFileName = `${randomUUID}.webp`;
+      const imageFileName = `${randomUUID()}.webp`;
 
       await processedSingleImage.toFile(path.join(photosDir, imageFileName));
       processedImage = `http://localhost:3000/uploads/profile_pics/${imageFileName}`;
