@@ -74,7 +74,7 @@ const createNewUser = async (req, res, next) => {
     await sendMail({
       to: email,
       subject: 'Verifica tu correo electrónico',
-      HTMLPart: `Para verificar tu cuenta, copia el siguiente código: ${registrationCode}`,
+      HTMLPart: `Para verificar tu cuenta, haz <a href="https://localhost:5173/validate?registrationCode=${registrationCode}" target="_blank">click aquí</a> o copia el siguiente código: ${registrationCode}`,
     });
 
     res.status(201).send({
