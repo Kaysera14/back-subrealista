@@ -8,7 +8,6 @@ const selectTenantRatings = async (username) => {
     const [ratings] = await pool.query(
       `
     SELECT
-    r.rental_id,
     t.renting_id,
     t.rating,
     t.owner,
@@ -16,7 +15,6 @@ const selectTenantRatings = async (username) => {
     t.comments,
     t.createdAt
     FROM tenant_ratings t
-    JOIN rentals r ON t.renting_id = r.rental_rent_id
     WHERE tenant=?
     `,
       [username]
