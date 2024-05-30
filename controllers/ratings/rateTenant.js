@@ -1,6 +1,7 @@
 const {
   postRateTenant,
 } = require('../../db/queries/ratings/postRateTenant.js');
+const jwt = require('jsonwebtoken');
 
 const rateTenant = async (req, res, next) => {
   try {

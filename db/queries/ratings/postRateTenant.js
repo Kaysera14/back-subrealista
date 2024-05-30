@@ -2,40 +2,37 @@ const { generateError } = require('../../../helpers/generateError.js');
 const getPool = require('../../getDB.js');
 
 const postRateTenant = async (username, id, rating, comments) => {
-  let connection = await getPool;
-  const [checkOwner] = await connection.query(
+  const pool = await getPool();
+
+  const [checkOwner] = await pool.query(
     `
-      SELECT rental_owner FROM rentals WHERE rental_id=?
+      SELECT rental_owner FROM rentals WHERE rental_rent_id=?
     `,
     [id]
   );
 
+  let ownerUsername;
+
   if (!checkOwner[0].rental_owner === username) {
     throw generateError(`No has sido inquilino de este alquiler`, 401);
+  } else {
+    ownerUsername = checkOwner[0].rental_owner;
   }
 
-  const [getTenant] = await connection.query(
+  const [getRentalId] = await pool.query(
     `
-    SELECT rental_tenant FROM rentals WHERE rental_id=?
-  `,
-    [id]
-  );
-  const tenantUsername = getTenant[0].rental_tenant;
-
-  const [getRentalId] = await connection.query(
-    `
-    SELECT rental_rent_id FROM rentals WHERE rental_id=?
+    SELECT rental_id FROM rentals WHERE rental_rent_id=?
     `,
     [id]
   );
   const renting_id = getRentalId[0].rental_id;
 
-  const [postRating] = await connection.query(
+  const [postRating] = await pool.query(
     `
       INSERT INTO tenant_ratings (tenant, owner, renting_id, rating, comments)
       VALUES (?, ?, ?, ?, ?)
     `,
-    [tenantUsername, username, renting_id, rating, comments]
+    [username, ownerUsername, renting_id, rating, comments]
   );
 
   return postRating;

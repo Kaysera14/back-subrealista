@@ -246,10 +246,10 @@ const populate = async () => {
       `
     );
 
-    console.log('Rellenando tabla owner_ratings');
+    console.log('Rellenando tabla tenant_ratings');
     await connection.query(
       `
-      INSERT INTO owner_ratings (owner, tenant, renting_id, rating, comments)
+      INSERT INTO tenant_ratings (owner, tenant, renting_id, rating, comments)
       VALUES
       ('Manu', 'Susana', 1, 4, 'Excelente lugar para unas vacaciones'),
       ('Manu', 'Maria', 2, 5, 'El mejor lugar para relajarse y disfrutar'),
@@ -286,10 +286,10 @@ const populate = async () => {
       `
     );
 
-    console.log('Rellenando tabla tenant_ratings');
+    console.log('Rellenando tabla owner_ratings');
     await connection.query(
       `
-      INSERT INTO tenant_ratings (tenant, owner, renting_id, rating, comments)
+      INSERT INTO owner_ratings (tenant, owner, renting_id, rating, comments)
       VALUES 
       ('Susana', 'Manu', 1, 4, 'Excelente inquilino, muy respetuoso'),
       ('Maria', 'Manu', 2, 5, 'El mejor inquilino que he tenido, muy ordenado y amable'),
