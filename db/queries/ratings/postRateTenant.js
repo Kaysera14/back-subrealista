@@ -19,20 +19,12 @@ const postRateTenant = async (username, id, rating, comments) => {
     ownerUsername = checkOwner[0].rental_owner;
   }
 
-  const [getRentalId] = await pool.query(
-    `
-    SELECT rental_id FROM rentals WHERE rental_rent_id=?
-    `,
-    [id]
-  );
-  const renting_id = getRentalId[0].rental_id;
-
   const [postRating] = await pool.query(
     `
       INSERT INTO tenant_ratings (tenant, owner, renting_id, rating, comments)
       VALUES (?, ?, ?, ?, ?)
     `,
-    [username, ownerUsername, renting_id, rating, comments]
+    [username, ownerUsername, id, rating, comments]
   );
 
   return postRating;
